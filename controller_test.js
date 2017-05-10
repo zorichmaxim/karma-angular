@@ -7,14 +7,16 @@ describe('Controller test', function () {
 
    beforeEach(angular.mock.module('app'));
 
-   beforeEach(angular.module.inject(function ($controller, $rootScope) {
-       mackScope = $rootScope.new();
+   beforeEach(angular.mock.inject(function ($controller, $rootScope) {
+        // создание нового scope
+        mackScope = $rootScope.$new();
 
-       controller = $controller('appCtrl', {
-          $scope : mackScope
-       })
-   }))
-
+        // сервис $controller испольльзуется для инстанциирования объекта контроллера
+        // метод принимает 2 аргумента имя контроллера и объект содержащий свойства, которые используются для разрешения зависимостей
+        controller = $controller("appCtrl", {
+            $scope: mackScope
+        });
+    }));
     it('Наличие count', function () {
         expect(mackScope.count).toEqual(0)
     });
