@@ -19,6 +19,7 @@ module.exports = function(config) {
         'mock.js',
         'tests/first_basic_test.js',
         'tests/controller_test.js',
+        'tests/timeout_test.js',
         'tests/ajax_test',
         'javascripts.js'
     ],
