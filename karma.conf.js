@@ -17,8 +17,9 @@ module.exports = function(config) {
     files: [
         'node_modules/angular/angular.js',
         'mock.js',
-        'simpleTest.js',
-        'controller_test.js',
+        'tests/first_basic_test.js',
+        'tests/controller_test.js',
+        'tests/ajax_test',
         'javascripts.js'
     ],
 
@@ -70,4 +71,4 @@ module.exports = function(config) {
     // how many browser should be started simultaneous
     concurrency: Infinity
   })
-}
+};

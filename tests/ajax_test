@@ -1,0 +1,49 @@
+describe('Ajax test', function () {
+    var mockScope, controller, backend;
+
+    beforeEach(angular.mock.module('app'));
+
+    beforeEach(angular.mock.inject(function ($httpBackend) {
+        //Сервис $httpBackend используется для реализации низкоуровнего API по работе с запросами
+        //для тестирования приложений которые используют $http, с его помощью можно имитировать
+        //ответы с сервера
+        backend = $httpBackend;
+        backend.expect("GET", "package.json").respond(
+            [{
+                name:'First'
+            },{
+                name:"Second"
+            },{
+                name:"Third"
+            }]
+        )
+    }));
+
+    beforeEach(angular.mock.inject(function ($controller, $rootScope, $http) {
+        mockScope = $rootScope.$new();
+        $controller('appCtrl', {
+            $scope: mockScope,
+            $http: $http
+        });
+
+        //flush()/flush(count) отправляет результат или указанное количество ответов, пока
+        //метод не будет запущен
+
+        backend.flush();
+    }));
+    
+    it('Ajax запрос', function () {
+        // Проверка что все запросы обработаны и полученны ответы 
+        backend.verifyNoOutstandingExpectation();
+    });
+    it('Обработка данных', function () {
+        expect(mockScope.data).toBeDefined();
+        expect(mockScope.data.length).toEqual(3)
+    });
+    it('Проверка на правильность ответов', function () {
+        expect(mockScope.data[0].name).toEqual('First');
+        expect(mockScope.data[1].name).toEqual('Second');
+        expect(mockScope.data[2].name).toEqual('Third');
+    })
+    
+});
