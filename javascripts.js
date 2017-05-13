@@ -23,4 +23,39 @@ angular.module('app',[])
             $scope.timerCounter++
         },30000)
         
+    })
+    .filter("changeCase", function(){
+        return function(value, toUpper){
+            if(angular.isString(value)){
+                var processValue = toUpper ? value.toUpperCase() : value.toLowerCase();
+                return processValue;
+            } else {
+                return value
+            }
+        }
+    })
+    .directive('myDirective', function () {
+        return function (scope, element, attributes) {
+            var attrValue = attributes['myDirective'],
+                data = scope[attrValue];
+
+            if(angular.isArray(data)){
+                var e = angular.element("<ol>");
+                element.append(e);
+                for(var i=0;i<data.length;i++){
+                    e.append(angular.element("<li>").text(data[i].name))
+                }
+            }
+        }
+    })
+    .factory('myService', function () {
+        var count = 0;
+        return {
+            incrementCount : function () {
+                count++
+            },
+            getCount: function () {
+                return count
+            }
+        }
     });

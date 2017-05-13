@@ -20,7 +20,10 @@ module.exports = function(config) {
         'tests/first_basic_test.js',
         'tests/controller_test.js',
         'tests/timeout_test.js',
-        'tests/ajax_test',
+        'tests/filter_test.js',
+        'tests/directive_test.js',
+        'tests/service_test.js',
+       // 'tests/ajax_test',
         'javascripts.js'
     ],
 

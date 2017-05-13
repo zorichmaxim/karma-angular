@@ -31,9 +31,9 @@ describe('Ajax test', function () {
 
         backend.flush();
     }));
-    
+
     it('Ajax запрос', function () {
-        // Проверка что все запросы обработаны и полученны ответы 
+        // Проверка что все запросы обработаны и полученны ответы
         backend.verifyNoOutstandingExpectation();
     });
     it('Обработка данных', function () {
@@ -45,5 +45,5 @@ describe('Ajax test', function () {
         expect(mockScope.data[1].name).toEqual('Second');
         expect(mockScope.data[2].name).toEqual('Third');
     })
-    
+
 });
